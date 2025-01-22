@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9b2ded6a6ec304360bf0a151803001d6
+guid: b2b76b48d2bfe47ac8c8d40983ac0ed6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -72,7 +72,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1

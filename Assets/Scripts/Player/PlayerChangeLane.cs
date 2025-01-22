@@ -9,7 +9,7 @@ public class PlayerChangeLane : MonoBehaviour
     private GameLimits gameLimits;
     private int currentLaneIndex;
     private bool isMoving;
-    public float moveSpeed = 5f; // Vitesse de déplacement
+    private float moveSpeed = 5f; // Vitesse de déplacement
     public float laneSwitchDelay = 0.2f; // Délai avant d'accepter un nouveau changement de colonne
 
     private void Awake()
