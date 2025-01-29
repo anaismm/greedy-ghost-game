@@ -9,6 +9,7 @@ public class PlayerChangeLane : MonoBehaviour
     private GameLimits gameLimits;
     private int currentLaneIndex;
     private bool isMoving;
+    private bool canChangeLane = false;
     private float moveSpeed = 5f; // Vitesse de déplacement
     public float laneSwitchDelay = 0.2f; // Délai avant d'accepter un nouveau changement de colonne
 
@@ -74,7 +75,7 @@ public class PlayerChangeLane : MonoBehaviour
 
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
-        if (isMoving)
+        if (!canChangeLane || isMoving)
             return;
 
         float direction = context.ReadValue<float>();
@@ -93,5 +94,10 @@ public class PlayerChangeLane : MonoBehaviour
                 StartCoroutine(SwitchLane(currentLaneIndex - 1));
             }
         }
+    }
+
+    public void SetCanChangeLane(bool value)
+    {
+        canChangeLane = value;
     }
 }
