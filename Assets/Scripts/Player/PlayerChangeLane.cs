@@ -15,11 +15,10 @@ public class PlayerChangeLane : MonoBehaviour
 
     private void Awake()
     {
-        // Récupérer la référence au script GameLimits attaché à l'objet LevelControl
         gameLimits = GameObject.Find("LevelControl").GetComponent<GameLimits>();
         currentLaneIndex = 1; 
 
-        // Pour toujours débuter la partie sur la colonne du milieu
+        // Always start on the middle lane
         Vector3 startPosition = new Vector3(gameLimits.GetLanePosition(currentLaneIndex), transform.position.y, transform.position.z);
         transform.position = startPosition;
     }

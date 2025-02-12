@@ -20,7 +20,8 @@ public class GenerateLevel : MonoBehaviour
     IEnumerator GenerateSection ()
     {
         secNum = Random.Range(0,3);
-        Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
+        GameObject newSection = Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
+        newSection.layer = LayerMask.NameToLayer("Ground");
         zPos += 20;
         yield return new WaitForSeconds(2);
         creatingSection = false;

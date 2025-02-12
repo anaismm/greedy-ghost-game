@@ -20,8 +20,7 @@ public class GameLimits : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Lane index out of bounds: " + laneIndex);
-            return 0f; // Valeur par défaut au cas où
+            return 0f; 
         }
     }
 

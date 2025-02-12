@@ -11,7 +11,6 @@ public class ObstacleCollision : MonoBehaviour
         this.gameObject.GetComponent<BoxCollider>().enabled = false;
         thePlayer.GetComponent<PlayerMove>().enabled = false; 
         thePlayer.GetComponent<PlayerLives>().TakeDamage();
-        // charModel.GetComponent<Animator>().Play("Collide");
         charModel.GetComponent<Animator>().SetTrigger("Collide");
     }
 
