@@ -8,10 +8,12 @@ public class CollectableControls : MonoBehaviour
 {
    public static int candyCount;
    public TextMeshProUGUI candyCountDisplay;
+   public TextMeshProUGUI candyEndDisplay;
 
    void Update() 
    {
       candyCountDisplay.text = candyCount.ToString();
+      candyEndDisplay.text = candyCount.ToString();
       //   candyCountDisplay.GetComponent<Text>().text = "" + candyCount;
    }
 }

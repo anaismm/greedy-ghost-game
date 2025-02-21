@@ -5,6 +5,7 @@ public class PlayerLives : MonoBehaviour
     private int lives = 3; // Nombre de vies du joueur
     public GameObject[] lifeIcons; // Tableau des images de vie
     public PlayerRespawn respawnScript; // Référence au script de respawn
+    public GameObject levelControl;
 
     public void TakeDamage()
     {
@@ -33,6 +34,8 @@ public class PlayerLives : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Game Over!");
-        // Ici, tu peux ajouter du code pour afficher un écran de Game Over, arrêter le jeu, etc.
+        levelControl.GetComponent<EndRunSequence>().TriggerEndSequence(); // Démarrer la fin
     }
+
+
 }
