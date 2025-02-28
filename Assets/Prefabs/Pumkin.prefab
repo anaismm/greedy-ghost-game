@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4747330713213412508}
   - component: {fileID: 6213899725057711487}
   - component: {fileID: 6564012951091451707}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Pumkin
-  m_TagString: Citrouille
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1018664272722485354, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -1018664272722485354, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_TagString
@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_TagString
@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4424396828587804706, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4424396828587804706, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_TagString
@@ -196,7 +196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5859259852128964746, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5859259852128964746, guid: c808c81441ee7468c8aea546ac4b5c1c, type: 3}
       propertyPath: m_TagString

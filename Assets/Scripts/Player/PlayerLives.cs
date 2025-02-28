@@ -37,5 +37,10 @@ public class PlayerLives : MonoBehaviour
         levelControl.GetComponent<EndRunSequence>().TriggerEndSequence(); // Démarrer la fin
     }
 
+    public int GetLives()
+    {
+        return lives;
+    }
+
 
 }

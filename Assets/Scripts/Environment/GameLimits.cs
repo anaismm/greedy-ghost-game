@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameLimits : MonoBehaviour
 {
-    // Liste des positions des colonnes
     [SerializeField] private float[] LanePositions = { -3.41f, -1.7f, 0f };
 
     public int GetLaneCount()
@@ -20,7 +19,7 @@ public class GameLimits : MonoBehaviour
         }
         else
         {
-            return 0f; 
+            return 0f;
         }
     }
 
@@ -28,5 +27,7 @@ public class GameLimits : MonoBehaviour
     {
         return laneIndex >= 0 && laneIndex < LanePositions.Length;
     }
+
+
 }
 

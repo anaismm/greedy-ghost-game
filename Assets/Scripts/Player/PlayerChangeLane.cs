@@ -1,27 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerChangeLane : MonoBehaviour
 {
-    public InputActionReference moveAction; 
+    public InputActionReference moveAction;
     private GameLimits gameLimits;
     private int currentLaneIndex;
-    private bool isMoving;
-    private bool canChangeLane = false;
-    private float moveSpeed = 5f; // Vitesse de déplacement
-    public float laneSwitchDelay = 0.2f; // Délai avant d'accepter un nouveau changement de colonne
+    private bool isMoving = true;
+    private bool canChangeLane = true; // Pour tester, le laisser activé par défaut
+    private float moveSpeed = 5f;
+    public float laneSwitchDelay = 0.1f;
+
+
+    private CharacterController characterController;
+    private Vector3 targetPosition;
+    private Vector3 moveDirection;
 
     private void Awake()
     {
         gameLimits = GameObject.Find("LevelControl").GetComponent<GameLimits>();
-        currentLaneIndex = 1; 
+        characterController = GetComponent<CharacterController>();
+        currentLaneIndex = 1;
 
-        // Always start on the middle lane
-        Vector3 startPosition = new Vector3(gameLimits.GetLanePosition(currentLaneIndex), transform.position.y, transform.position.z);
-        transform.position = startPosition;
+        isMoving = false;
     }
+
 
     private void OnEnable()
     {
@@ -38,7 +42,6 @@ public class PlayerChangeLane : MonoBehaviour
 
     private void OnDisable()
     {
-        // Désactiver l'action lorsque le script est désactivé
         if (moveAction != null)
         {
             moveAction.action.performed -= OnMovePerformed;
@@ -48,29 +51,64 @@ public class PlayerChangeLane : MonoBehaviour
 
     private void Update()
     {
-        // Si le joueur est en train de se déplacer entre deux colonnes, ignorer les entrées car il y a un temps de delai avant de pouvoir encore changer de colonne
         if (isMoving)
-            return;
+        {
+            float targetLanePosition = gameLimits.GetLanePosition(currentLaneIndex);
+            targetPosition = new Vector3(targetLanePosition, transform.position.y, transform.position.z);
 
-        // Récupérer la position de la colonne actuelle
-        float targetLanePosition = gameLimits.GetLanePosition(currentLaneIndex);
+           
+            Vector3 moveDirection = (targetPosition - transform.position).normalized;
+            float distance = Vector3.Distance(transform.position, targetPosition);
 
-        // Déplacer le joueur vers la colonne
-        Vector3 targetPosition = new Vector3(targetLanePosition, transform.position.y, transform.position.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+          
+            characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+
+            if (distance <= moveSpeed * Time.deltaTime)
+            {
+                characterController.Move(targetPosition - transform.position); 
+                isMoving = false; 
+            }
+        }
     }
+
+
+
 
     private IEnumerator SwitchLane(int newLaneIndex)
     {
-        // Lorsqu'il est en train de changer de colonne
-        isMoving = true;
+        if (!gameLimits.IsLaneValid(newLaneIndex) || isMoving)
+            yield break;
 
+        isMoving = true;
         currentLaneIndex = newLaneIndex;
 
-        // Il y a un petit temps d'attente avant de pouvoir changer de colonne
-        yield return new WaitForSeconds(laneSwitchDelay);
+        float targetLanePosition = gameLimits.GetLanePosition(currentLaneIndex);
+        Vector3 targetPosition = new Vector3(targetLanePosition, transform.position.y, transform.position.z);
+
+        float distance = Mathf.Abs(transform.position.x - targetLanePosition);
+
+        while (distance > 0.05f) 
+        {
+           
+            Vector3 moveDirection = new Vector3(targetLanePosition - transform.position.x, 0, 0).normalized;
+            Vector3 forwardMovement = new Vector3(0, 0, moveSpeed * Time.deltaTime);
+
+            
+            characterController.Move(moveDirection * moveSpeed * Time.deltaTime + forwardMovement);
+
+            distance = Mathf.Abs(transform.position.x - targetLanePosition);
+            yield return null;
+        }
+
+        
+        transform.position = new Vector3(targetLanePosition, transform.position.y, transform.position.z);
+
         isMoving = false;
     }
+
+
+
+
 
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
@@ -78,25 +116,30 @@ public class PlayerChangeLane : MonoBehaviour
             return;
 
         float direction = context.ReadValue<float>();
-        
-        if (direction > 0) // Mouvement à droite
+
+        if (direction > 0 && gameLimits.IsLaneValid(currentLaneIndex + 1)) // Droite
         {
-            if (gameLimits.IsLaneValid(currentLaneIndex + 1))
-            {
-                StartCoroutine(SwitchLane(currentLaneIndex + 1));
-            }
+            StartCoroutine(SwitchLane(currentLaneIndex + 1));
         }
-        else if (direction < 0) // Mouvement à gauche
+        else if (direction < 0 && gameLimits.IsLaneValid(currentLaneIndex - 1)) // Gauche
         {
-            if (gameLimits.IsLaneValid(currentLaneIndex - 1))
-            {
-                StartCoroutine(SwitchLane(currentLaneIndex - 1));
-            }
+            StartCoroutine(SwitchLane(currentLaneIndex - 1));
         }
     }
+
+
 
     public void SetCanChangeLane(bool value)
     {
         canChangeLane = value;
+        isMoving = false;
     }
+
+    public void SetIsMoving(bool value)
+    {
+        isMoving = value;
+    }
+
+
+
 }

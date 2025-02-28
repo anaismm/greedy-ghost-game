@@ -14,7 +14,6 @@ public class PlayerJump : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
     }
-
     void Update()
     {
         // Vérifie si le joueur est au sol
@@ -29,11 +28,12 @@ public class PlayerJump : MonoBehaviour
         // Applique la gravité
         velocity.y += gravity * fallMultiplier * Time.deltaTime;
 
+        // **Ajout du déplacement vers l'avant**
+        float moveSpeed = 4f; // Vitesse de déplacement
+        velocity.z = moveSpeed; // Ajout de la vitesse vers l'avant
+
         // Applique le mouvement
         characterController.Move(velocity * Time.deltaTime);
-
-    
-
     }
 
     public void OnJump(InputAction.CallbackContext context)
