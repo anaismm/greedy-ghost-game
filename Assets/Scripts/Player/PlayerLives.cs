@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerLives : MonoBehaviour
 {
-    private int lives = 3; // Nombre de vies du joueur
-    public GameObject[] lifeIcons; // Tableau des images de vie
-    public PlayerRespawn respawnScript; // Référence au script de respawn
+    private int lives = 3; 
+    public GameObject[] lifeIcons; 
+    public PlayerRespawn respawnScript;
     public GameObject levelControl;
 
     public void TakeDamage()
@@ -15,12 +15,13 @@ public class PlayerLives : MonoBehaviour
 
         if (lives <= 0)
         {
+            lives = 0;
             GameOver();
+            return;
         }
-        else
-        {
-            respawnScript.Respawn(); // Appelle la méthode de respawn
-        }
+       
+        respawnScript.Respawn(); 
+        
     }
 
     void UpdateLivesUI()
@@ -34,7 +35,8 @@ public class PlayerLives : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Game Over!");
-        levelControl.GetComponent<EndRunSequence>().TriggerEndSequence(); // Démarrer la fin
+        GameObject.FindObjectOfType<PlayerChangeLane>().SetCanChangeLane(false);
+        levelControl.GetComponent<EndRunSequence>().TriggerEndSequence(); 
     }
 
     public int GetLives()

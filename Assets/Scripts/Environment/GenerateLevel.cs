@@ -23,7 +23,7 @@ public class GenerateLevel : MonoBehaviour
         GameObject newSection = Instantiate(section[secNum], new Vector3(0,0,zPos), Quaternion.identity);
         newSection.layer = LayerMask.NameToLayer("Ground");
         zPos += 20;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         creatingSection = false;
     }
 }

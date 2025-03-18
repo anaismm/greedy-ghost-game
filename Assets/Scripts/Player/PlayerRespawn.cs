@@ -7,7 +7,7 @@ public class PlayerRespawn : MonoBehaviour
     private Animator playerAnimator;
     private PlayerChangeLane playerChangeLaneScript; 
     private PlayerJump playerJumpScript; 
-   
+    
 
     private void Awake()
     {

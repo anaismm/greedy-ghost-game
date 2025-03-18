@@ -13,35 +13,30 @@ public class ObstacleCollision : MonoBehaviour
     void Awake()
     {
         // Initialiser les références
-        playerJumpScript = thePlayer.GetComponent<PlayerJump>(); // Référence au script PlayerJump
+        playerJumpScript = thePlayer.GetComponent<PlayerJump>(); 
         playerAnimator = charModel.GetComponent<Animator>();
         playerController = thePlayer.GetComponent<CharacterController>();
-        playerLivesScript = thePlayer.GetComponent<PlayerLives>(); // Référence au script PlayerLives
-        playerRespawnScript = thePlayer.GetComponent<PlayerRespawn>(); // Référence au script PlayerRespawn
+        playerLivesScript = thePlayer.GetComponent<PlayerLives>(); 
+        playerRespawnScript = thePlayer.GetComponent<PlayerRespawn>(); 
     }
+
 
     void OnTriggerEnter(Collider other)
+{
+    if (playerLivesScript == null || playerLivesScript.GetLives() <= 0)
     {
-       
-        playerJumpScript.enabled = false;
-
-       
-        playerAnimator.SetTrigger("Collide");
-
-    
-        if (playerLivesScript != null && playerLivesScript.GetLives() > 0)
-        {
-           
-            playerRespawnScript.Respawn();
-            
-        }
-        else
-        {
-          
-            Debug.Log("Game Over");
-            
-        }
-
-        playerLivesScript.TakeDamage();
+        return; 
     }
+
+    playerJumpScript.enabled = false;
+    playerAnimator.SetTrigger("Collide");
+
+    playerLivesScript.TakeDamage();
+
+    if (playerLivesScript.GetLives() > 0)
+    {
+        playerRespawnScript.Respawn();
+    }
+}
+
 }

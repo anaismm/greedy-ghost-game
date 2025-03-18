@@ -12,10 +12,10 @@ public class LevelStarter : MonoBehaviour
     public AudioSource readyFX;
     public AudioSource goFx;
 
-    private float delayBetweenCounts = 1.0f; // Temps entre chaque étape
+    private float delayBetweenCounts = 1.0f; 
     private float initialDelay = 0.5f;
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         StartCoroutine(CountSequence());
@@ -23,6 +23,8 @@ public class LevelStarter : MonoBehaviour
 
     IEnumerator CountSequence() 
     {
+        GameObject.FindObjectOfType<PlayerChangeLane>().SetCanChangeLane(false);
+        
         yield return new WaitForSeconds(initialDelay);
         countdown3.SetActive(true);
         readyFX.Play();

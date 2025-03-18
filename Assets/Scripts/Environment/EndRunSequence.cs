@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndRunSequence : MonoBehaviour
 {
@@ -7,11 +8,10 @@ public class EndRunSequence : MonoBehaviour
     public GameObject endScreen;
     public GameObject fadeOut;
 
-    private bool hasEnded = false; // Empêche le déclenchement multiple
-
+    private bool hasEnded = false; 
     public void TriggerEndSequence()
     {
-        if (!hasEnded) // Vérifie si la fin a déjà été déclenchée
+        if (!hasEnded) 
         {
             hasEnded = true;
             StartCoroutine(EndSequence());
@@ -23,7 +23,9 @@ public class EndRunSequence : MonoBehaviour
         yield return new WaitForSeconds(1);
         candies.SetActive(false);
         endScreen.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         fadeOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(0);
     }
 }
