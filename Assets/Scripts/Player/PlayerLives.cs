@@ -24,7 +24,7 @@ public class PlayerLives : MonoBehaviour
         
     }
 
-    void UpdateLivesUI()
+    private void UpdateLivesUI()
     {
         if (lives >= 0 && lives < lifeIcons.Length)
         {
@@ -32,7 +32,7 @@ public class PlayerLives : MonoBehaviour
         }
     }
 
-    void GameOver()
+    private void GameOver()
     {
         Debug.Log("Game Over!");
         GameObject.FindObjectOfType<PlayerChangeLane>().SetCanChangeLane(false);

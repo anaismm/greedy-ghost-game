@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class EndRunSequence : MonoBehaviour
 {
-    public GameObject candies;
-    public GameObject endScreen;
-    public GameObject fadeOut;
+    [SerializeField] private GameObject candies;
+    [SerializeField] private GameObject endScreen;
+    [SerializeField] private GameObject fadeOut;
 
     private bool hasEnded = false; 
     public void TriggerEndSequence()

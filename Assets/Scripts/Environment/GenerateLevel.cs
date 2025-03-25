@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GenerateLevel : MonoBehaviour
 {
-    public GameObject[] section;
+    [SerializeField] private GameObject[] section;
     public int zPos = 20;
     private bool creatingSection = false; 
-    public int secNum;
+    private int secNum;
 
     void Update()
     {

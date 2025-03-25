@@ -23,7 +23,8 @@ public class PlayerRespawn : MonoBehaviour
     }
 
 
-     IEnumerator RespawnRoutine()
+    // To respawn the player
+    IEnumerator RespawnRoutine()
     {
         playerJumpScript.enabled = false; 
 

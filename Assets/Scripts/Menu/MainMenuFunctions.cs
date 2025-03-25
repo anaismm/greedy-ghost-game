@@ -5,17 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuFunctions : MonoBehaviour
 {
-   
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
 
     public void PlayGame()
     {

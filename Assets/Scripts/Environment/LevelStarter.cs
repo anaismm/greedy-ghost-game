@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class LevelStarter : MonoBehaviour
 {
-    public GameObject countdown3;
-    public GameObject countdown2;
-    public GameObject countdown1;
-    public GameObject countdownGo;
-    public GameObject fadeIn;
-    public AudioSource readyFX;
-    public AudioSource goFx;
+    [SerializeField] private GameObject countdown3;
+    [SerializeField] private GameObject countdown2;
+    [SerializeField] private GameObject countdown1;
+    [SerializeField] private GameObject countdownGo;
+    [SerializeField] private GameObject fadeIn;
+    [SerializeField] private AudioSource readyFX;
+    [SerializeField] private AudioSource goFx;
 
     private float delayBetweenCounts = 1.0f; 
     private float initialDelay = 0.5f;
@@ -21,6 +21,7 @@ public class LevelStarter : MonoBehaviour
         StartCoroutine(CountSequence());
     }
 
+    // THE 3,2,1, GO 
     IEnumerator CountSequence() 
     {
         GameObject.FindObjectOfType<PlayerChangeLane>().SetCanChangeLane(false);

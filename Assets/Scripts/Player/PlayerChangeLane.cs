@@ -4,11 +4,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerChangeLane : MonoBehaviour
 {
-    public InputActionReference moveAction;
+    [SerializeField] private InputActionReference moveAction;
     private GameLimits gameLimits;
     private int currentLaneIndex;
     private bool isMoving = true;
-    private bool canChangeLane = true; // Pour tester, le laisser activé par défaut
+    private bool canChangeLane = true; 
     private float moveSpeed = 5f;
     public float laneSwitchDelay = 0.1f;
 
@@ -49,6 +49,7 @@ public class PlayerChangeLane : MonoBehaviour
         }
     }
 
+    //To move forward the character 
     private void Update()
     {
         if (isMoving)
@@ -70,7 +71,6 @@ public class PlayerChangeLane : MonoBehaviour
             }
         }
     }
-
 
 
 
@@ -109,7 +109,7 @@ public class PlayerChangeLane : MonoBehaviour
 
 
 
-
+    //To change lane when click is detect
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
         if (!canChangeLane || isMoving)
@@ -128,12 +128,12 @@ public class PlayerChangeLane : MonoBehaviour
     }
 
 
-
     public void SetCanChangeLane(bool value)
     {
         canChangeLane = value;
         isMoving = false;
     }
+
 
     public void SetIsMoving(bool value)
     {

@@ -7,13 +7,17 @@ using TMPro;
 public class CollectableControls : MonoBehaviour
 {
    public static int candyCount;
-   public TextMeshProUGUI candyCountDisplay;
-   public TextMeshProUGUI candyEndDisplay;
+   [SerializeField] private TextMeshProUGUI candyCountDisplay;
+   [SerializeField] private TextMeshProUGUI candyEndDisplay;
+
+   void Start() 
+   {
+      candyCount = 0;  // reinitialized counter
+   }
 
    void Update() 
    {
       candyCountDisplay.text = candyCount.ToString();
       candyEndDisplay.text = candyCount.ToString();
-      //   candyCountDisplay.GetComponent<Text>().text = "" + candyCount;
    }
 }

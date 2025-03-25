@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Destroyer : MonoBehaviour
 {
-    public string parentName;
-    public float timeBeforeDestruction = 50f; 
-    public float destructionInterval = 5f; 
+    private string parentName;
+    [SerializeField] private float timeBeforeDestruction = 50f; 
+    [SerializeField] private float destructionInterval = 5f; 
 
     private static List<GameObject> sectionsToDestroy = new List<GameObject>(); 
 
@@ -20,6 +20,7 @@ public class Destroyer : MonoBehaviour
         }
     }
 
+    //Destroy sections of the road that are passed 
     IEnumerator DestroySections()
     {
         yield return new WaitForSeconds(timeBeforeDestruction);
